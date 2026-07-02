@@ -2,10 +2,12 @@
 import Image from 'next/image';
 import NavButtonActive from "@/components/ui/navButtonActive";
 import NavButtonInactive from "@/components/ui/navButtonInactive";
+import RefreshButton from '../ui/refreshButton';
+import ThemeSwitchButton from '../ui/themeSwitchButton';
 
 export default async function Header() {
     return (
-        <header className="flex items-center py-4 font-(--spacemono)">
+        <header className="flex items-center py-4 font-(--spacemono) border-b border-b-(--border)">
 
             <div className={"logo-wrap flex flex-row items-center gap-2"}>
                 <Image
@@ -20,7 +22,7 @@ export default async function Header() {
 
             </div>
 
-            <nav className={"flex items-center gap-4 ml-5"}>
+            <nav className={"flex items-center grow gap-4 ml-5"}>
                 <NavButtonActive
                     title={"feed"}
                     width={55}
@@ -35,7 +37,11 @@ export default async function Header() {
                     title={"loading"}
                 />
 
+                <div className='refreshBtnContainer ml-auto'>
+                    <RefreshButton />
+                </div>
 
+                <ThemeSwitchButton />
             </nav>
 
         </header>

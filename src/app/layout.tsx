@@ -11,13 +11,13 @@ export const metadata: Metadata = {
 
 const dmsans = DM_Sans({
   subsets: ['latin'],
-})
+});
 
 const spacemono = Space_Mono({
   subsets: ['latin'],
   weight: '400',
   variable: "--spacemono",
-})
+});
 
 export default function RootLayout({
   children,
