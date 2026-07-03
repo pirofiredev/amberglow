@@ -33,7 +33,7 @@ export default async function Header() {
                     title={"expanded"}
                 />
 
-                <NavButtonInactive //TODO will be removed on release
+                <NavButtonInactive // TODO will be removed on release
                     title={"loading"}
                 />
 
