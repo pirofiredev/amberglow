@@ -4,6 +4,7 @@ import NavButtonActive from "@/components/ui/navButtonActive";
 import NavButtonInactive from "@/components/ui/navButtonInactive";
 import RefreshButton from '../ui/refreshButton';
 import ThemeSwitchButton from '../ui/themeSwitchButton';
+import FilterButton from '../ui/filterButton';
 
 export default async function Header() {
     return (
@@ -23,25 +24,27 @@ export default async function Header() {
             </div>
 
             <nav className={"flex items-center grow gap-4 ml-5"}>
-                <NavButtonActive
-                    title={"feed"}
-                    width={55}
-                    height={20}
-                />
+                <div className={"left-nav flex flex-row items-center gap-2"}>
+                    <NavButtonActive
+                        title={"feed"}
+                        width={55}
+                        height={20}
+                    />
 
-                <NavButtonInactive
-                    title={"expanded"}
-                />
+                    <NavButtonInactive
+                        title={"expanded"}
+                    />
 
-                <NavButtonInactive // TODO will be removed on release
-                    title={"loading"}
-                />
+                    <NavButtonInactive // TODO will be removed on release
+                        title={"loading"}
+                    />
+                </div>
 
-                <div className='refreshBtnContainer ml-auto'>
+                <div className={"right-nav flex flex-row items-center gap-4 ml-auto"}>
+                    <ThemeSwitchButton />
                     <RefreshButton />
                 </div>
 
-                <ThemeSwitchButton />
             </nav>
 
         </header>
