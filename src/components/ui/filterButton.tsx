@@ -1,7 +1,10 @@
 'use client'
 import { useState } from "react";
 
-type Tag = { tagName: string }
+interface Tag {
+    id: number;
+    tagName: string;
+}
 export default function FilterButton({ tags }: { tags: Tag[] }) {
 
     const [aiFilter, setAiFilter] = useState(false);
@@ -28,6 +31,11 @@ export default function FilterButton({ tags }: { tags: Tag[] }) {
     function aiFilterHandler() {
         setAiFilter(!aiFilter);
     }
+
+    function tagsHandler(tagId:number) {
+        console.log(tagId)
+    }
+
 
 
     return (
@@ -69,13 +77,17 @@ export default function FilterButton({ tags }: { tags: Tag[] }) {
 
                         <div className={"tags flex flex-wrap flex-row gap-1 mt-1"}>
 
-                            {tags.map((tag, i) => (
-                                <>
-                                    <div className="bg-(--sidebar-accent) px-2 py-0.5 text-(--muted-foreground) text-[0.9rem] rounded-full border border-(--border)">
-                                        <p key={i}>{tag.tagName}</p>
-                                    </div>
-                                </>
-                            ))}
+                            {tags.map((tag) => (
+                                <button
+                                    key={tag.id}
+                                    type="button"
+                                    onClick={() => tagsHandler(tag.id)}
+                                    className="bg-(--sidebar-accent) cursor-pointer px-2 py-0.5 text-(--muted-foreground) text-[0.9rem] rounded-full border border-(--border)"
+                                >
+                                    <p>{tag.tagName}</p>
+                                </button>
+                            ))
+                            }
 
                         </div>
 

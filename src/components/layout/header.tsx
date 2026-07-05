@@ -9,17 +9,25 @@ import { createClient } from '@/lib/supabase/server'
 import Image from 'next/image';
 
 
+interface Tag {
+    id: number;
+    tagName: string;
+}
+
 export default async function Header() {
 
 
-    async function fetchTags() {
+    async function fetchTags(): Promise<Tag[]> {
         const supabase = await createClient();
-        const { data: tags } = await supabase.from('tags').select('tagName');
-        return tags;
+        const { data: tags } = await supabase
+            .from('tags')
+            .select('id, tagName')
+            .order('tagName');
+        return tags as Tag[];
     }
 
-    // @ts-expect-error cuz supabase types not generated rn
-    const tags: { tagName: string }[] = await fetchTags()
+    const tags: { id: number, tagName: string }[] = await fetchTags();
+
 
     return (
         <header className="flex items-center py-4 font-(--spacemono) border-b border-b-(--border)">
