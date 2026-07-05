@@ -1,12 +1,26 @@
 'use server'
-import Image from 'next/image';
 import NavButtonActive from "@/components/ui/navButtonActive";
 import NavButtonInactive from "@/components/ui/navButtonInactive";
 import RefreshButton from '../ui/refreshButton';
 import ThemeSwitchButton from '../ui/themeSwitchButton';
 import FilterButton from '../ui/filterButton';
 
+import { createClient } from '@/lib/supabase/server'
+import Image from 'next/image';
+
+
 export default async function Header() {
+
+
+    async function fetchTags() {
+        const supabase = await createClient();
+        const { data: tags } = await supabase.from('tags').select('tagName');
+        return tags;
+    }
+
+    // @ts-expect-error cuz supabase types not generated rn
+    const tags: { tagName: string }[] = await fetchTags()
+
     return (
         <header className="flex items-center py-4 font-(--spacemono) border-b border-b-(--border)">
 
@@ -27,8 +41,6 @@ export default async function Header() {
                 <div className={"left-nav flex flex-row items-center gap-2"}>
                     <NavButtonActive
                         title={"feed"}
-                        width={55}
-                        height={20}
                     />
 
                     <NavButtonInactive
@@ -41,8 +53,12 @@ export default async function Header() {
                 </div>
 
                 <div className={"right-nav flex flex-row items-center gap-4 ml-auto"}>
-                    <ThemeSwitchButton />
+
+                    <FilterButton   // here I'm passing tags to client component
+                        tags={tags}
+                    />
                     <RefreshButton />
+                    <ThemeSwitchButton />
                 </div>
 
             </nav>

@@ -28,7 +28,7 @@
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
+  --chart-6: oklch(0.645 0.242 303.9);
   --sidebar: #0f0f0f;
   --sidebar-foreground: #e2d8c8;
   --sidebar-primary: #ff6600;
@@ -38,6 +38,8 @@
   --sidebar-border: rgba(255, 102, 0, 0.10);
   --sidebar-ring: #ff6600;
 
+  --transparent-primary: oklch(0.696 0.204 43.439 / 0.1);
+  --transparent-yellow: oklch(0.772 0.173 65.367 / 0.1);
 
   /* animations */
 
@@ -68,7 +70,7 @@
   --accent-foreground: #1a1408;
   --destructive: #d4183d;
   --destructive-foreground: #ffffff;
-  --border: rgba(0, 0, 0, 0.08);
+  --border: rgb(0 0 0 / 0.4);
   --input: transparent;
   --input-background: #f3efe8;
   --switch-background: #c8c0b0;
