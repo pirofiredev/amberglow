@@ -41,6 +41,9 @@
   --transparent-primary: oklch(0.696 0.204 43.439 / 0.1);
   --transparent-yellow: oklch(0.772 0.173 65.367 / 0.1);
 
+  --semi-ransparent-primary: oklch(0.696 0.204 43.439 / 0.2);
+
+
   /* animations */
 
   --animate-blink: blink-animation 2s steps(1, start) infinite;

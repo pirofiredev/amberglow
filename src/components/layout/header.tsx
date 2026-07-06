@@ -46,17 +46,19 @@ export default async function Header() {
             </div>
 
             <nav className={"flex items-center grow gap-4 ml-5"}>
-                <div className={"left-nav flex flex-row items-center gap-2"}>
+                <div className={"left-nav flex flex-row items-center gap-2 select-none"}>
                     <NavButtonActive
                         title={"feed"}
                     />
 
                     <NavButtonInactive
                         title={"expanded"}
+                        url={"/expanded"}
                     />
 
-                    <NavButtonInactive // TODO will be removed on release
+                    <NavButtonInactive // TODO will be moved on release
                         title={"loading"}
+                        url={"/loading"}
                     />
                 </div>
 

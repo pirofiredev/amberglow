@@ -1,7 +1,7 @@
 'use client'
 
-export default function navButtonInactive({title}: {title: string}) {
+export default function navButtonInactive({url, title}: {title: string, url: string}) {
     return (
-        <input type="button" value={title} className={"text-(--muted-foreground) text-[0.8rem] hover:text-(--popover-foreground) transition cursor-pointer"}/>
+        <a href={url} className={"text-(--muted-foreground) text-[0.8rem] hover:text-(--popover-foreground) transition cursor-pointer"}>{title}</a>
     );
 }

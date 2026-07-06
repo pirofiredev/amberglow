@@ -1,5 +1,5 @@
 'use client'
-import { useState } from "react";
+import {useEffect, useState} from "react";
 
 interface Tag {
     id: number;
@@ -11,6 +11,8 @@ export default function FilterButton({ tags }: { tags: Tag[] }) {
 
     const [filterVisible, setFilterVisible] = useState(false);
     const [filterAnimation, setFilterAnimation] = useState(false); // true - opacity 100, false - opacity 0
+
+    const [activeTagsIds, setActiveTagsIds] = useState<string[]>([]);
 
     function toggleFilterList() {
 
@@ -32,10 +34,32 @@ export default function FilterButton({ tags }: { tags: Tag[] }) {
         setAiFilter(!aiFilter);
     }
 
-    function tagsHandler(tagId:number) {
-        console.log(tagId)
+    function tagsHandler(tagId:string) {
+        setActiveTagsIds(prev =>
+            prev.includes(tagId) ? prev.filter(id => id !== tagId) : [...prev, tagId]  // this line means - if an array already includes
+        )                                                                                     // id, then rebuild whole array and remove passed id. Else if includes, return all previous values + new passed id
     }
 
+    function clearFilters() {
+        setActiveTagsIds([]);
+    }
+
+    useEffect(() => { // autoclose if user clicked somewhere but not on menu
+        if (!filterVisible) return;
+
+        function handleClick(clickEvent: MouseEvent) {
+            if (!(clickEvent.target as HTMLElement).closest("#filtersList")) {
+                setFilterAnimation(false);
+                setTimeout(() => setFilterVisible(false), 300);
+            }
+        }
+
+        document.body.addEventListener("click", handleClick);
+
+        return () => {
+            document.body.removeEventListener("click", handleClick);
+        };
+    }, [filterVisible]);
 
 
     return (
@@ -46,20 +70,20 @@ export default function FilterButton({ tags }: { tags: Tag[] }) {
                     <input className={"text-[0.8rem] cursor-pointer"} type="button" value="filter" />
                 </button>
 
-                <div className={`filtersList ${filterAnimation ? "opacity-100" : "opacity-0"} ${filterVisible ? "visible" : "hidden"} transition-all duration-300 bg-(--card) border border-(--border) absolute right-0 mt-1 rounded-sm p-3`}>
+                <div id={"filtersList"} className={`${filterAnimation ? "opacity-100" : "opacity-0"} ${filterVisible ? "visible" : "hidden"} transition-all duration-300 bg-(--card) border border-(--border) absolute right-0 mt-1 rounded-sm p-3`}>
 
                     <div className={`topFilterSection border-b border-b-(--border) pb-3`}>
                         <p className={"uppercase text-(--muted-foreground) text-[0.8rem] text-center mb-0.5"}>ai filter</p>
 
                             <button type={"button"} onClick={aiFilterHandler} className={`flex flex-row grow w-max items-center mx-auto gap-2 mt-2 ${aiFilter ? "border-(--chart-3) bg-(--transparent-yellow)" : ""} font-semibold transition text-sm text-(--muted-foreground) bg-(--secondary)  rounded-full px-4 py-0.5 cursor-pointer border border-(--border) hover:border-(--chart-3)`}>
 
-                                <span className={`aiFilterAccepted px-1 py-0.5 flex flex-row items-center gap-2 ${aiFilter ? "hidden" : "visible"}`}>
+                                <span className={`aiFilterAccepted w-60 px-1 py-0.5 flex flex-row justify-center items-center gap-2 ${aiFilter ? "hidden" : "visible"}`}>
                                     <svg className={"text-(--muted-foreground)"} xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="16" height="16" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M14.706 4.313H9.294a4.98 4.98 0 0 0-4.982 4.981v5.412a4.98 4.98 0 0 0 4.982 4.982h5.412a4.98 4.98 0 0 0 4.982-4.982V9.294a4.98 4.98 0 0 0-4.982-4.982Z"></path><path d="M19.606 15.588h1.619a1.025 1.025 0 0 0 1.025-1.025V9.438a1.025 1.025 0 0 0-1.025-1.025h-1.62m-15.21 7.175h-1.62a1.025 1.025 0 0 1-1.025-1.025V9.438a1.025 1.025 0 0 1 1.025-1.025h1.62"></path><path strokeLinecap="round" strokeLinejoin="round" d="M2.765 8.413v-4.1m18.46 4.1l-.01-4.1m-12.3 4.45v2.698m6.15-2.698v2.698M9.94 15.588h4.1"></path></g></svg>
                                     <p>possible ai visible</p>
                                     <svg className={"text-(--muted-foreground)"} xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="16" height="16" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M14.706 4.313H9.294a4.98 4.98 0 0 0-4.982 4.981v5.412a4.98 4.98 0 0 0 4.982 4.982h5.412a4.98 4.98 0 0 0 4.982-4.982V9.294a4.98 4.98 0 0 0-4.982-4.982Z"></path><path d="M19.606 15.588h1.619a1.025 1.025 0 0 0 1.025-1.025V9.438a1.025 1.025 0 0 0-1.025-1.025h-1.62m-15.21 7.175h-1.62a1.025 1.025 0 0 1-1.025-1.025V9.438a1.025 1.025 0 0 1 1.025-1.025h1.62"></path><path strokeLinecap="round" strokeLinejoin="round" d="M2.765 8.413v-4.1m18.46 4.1l-.01-4.1m-12.3 4.45v2.698m6.15-2.698v2.698M9.94 15.588h4.1"></path></g></svg>
                                 </span>
 
-                                <span className={`aiFilterRejected px-1 py-0.5 flex flex-row items-center gap-2 ${aiFilter ? "visible" : "hidden"}`}>
+                                <span className={`aiFilterRejected w-60 px-1 py-0.5 flex flex-row justify-center  items-center gap-2 ${aiFilter ? "visible" : "hidden"}`}>
                                     <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="21" height="21" viewBox="0 0 24 24"><path fill="currentColor" d="M18.9 8.1L9 18l-4.95-4.95l.71-.71L9 16.59l9.19-9.2z"></path></svg>
                                     <p>ai stories hidden</p>
                                     <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="21" height="21" viewBox="0 0 24 24"><path fill="currentColor" d="M18.9 8.1L9 18l-4.95-4.95l.71-.71L9 16.59l9.19-9.2z"></path></svg>
@@ -69,20 +93,22 @@ export default function FilterButton({ tags }: { tags: Tag[] }) {
                     </div>
 
 
-                    <div className={`bottomFilterSection mt-2`}>
+                    <div className={`bottomFilterSection mt-3`}>
 
-                        <span className={"flex flex-row grow w-max justify-between"}>
+                        <span className={"flex flex-row justify-between items-center"}>
                             <p className={"uppercase text-(--muted-foreground) text-[0.9rem] text-left mb-0.5"}>FEATURED TAGS</p>
+                            <button type={"button"} onClick={clearFilters} className={`cursor-pointer text-(--primary) ${activeTagsIds.length ? "block" : "hidden"}`}>clear all</button>
                         </span>
 
-                        <div className={"tags flex flex-wrap flex-row gap-1 mt-1"}>
+                        <div className={"tags flex flex-wrap flex-row gap-1 mt-2"}>
 
                             {tags.map((tag) => (
                                 <button
                                     key={tag.id}
+                                    id={tag.id.toString()}
                                     type="button"
-                                    onClick={() => tagsHandler(tag.id)}
-                                    className="bg-(--sidebar-accent) cursor-pointer px-2 py-0.5 text-(--muted-foreground) text-[0.9rem] rounded-full border border-(--border)"
+                                    onClick={() => tagsHandler(tag.id.toString())}
+                                    className={`cursor-pointer ${activeTagsIds.includes( tag.id.toString() ) ? "bg-(--semi-ransparent-primary) text-(--foreground) border-(--primary)" : "bg-(--sidebar-accent) text-(--muted-foreground) hover:text-(--foreground) hover:border-(--primary)"}  transition px-2 py-0.5 text-[0.9rem] rounded-full border border-(--border)`}
                                 >
                                     <p>{tag.tagName}</p>
                                 </button>
@@ -91,9 +117,7 @@ export default function FilterButton({ tags }: { tags: Tag[] }) {
 
                         </div>
 
-
                     </div>
-
 
                 </div>
 
