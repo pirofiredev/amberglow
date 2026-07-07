@@ -1,9 +1,9 @@
 'use server'
-import NavButtonActive from "@/components/ui/navButtonActive";
-import NavButtonInactive from "@/components/ui/navButtonInactive";
+
 import RefreshButton from '../ui/refreshButton';
 import ThemeSwitchButton from '../ui/themeSwitchButton';
 import FilterButton from '../ui/filterButton';
+import NavButton from "../ui/navButton"
 
 import { createClient } from '@/lib/supabase/server'
 import Image from 'next/image';
@@ -30,7 +30,7 @@ export default async function Header() {
 
 
     return (
-        <header className="flex items-center py-4 font-(--spacemono) border-b border-b-(--border)">
+        <header className="flex items-center py-4 border-b border-b-(--border) font-mono">
 
             <div className={"logo-wrap flex flex-row items-center gap-2"}>
                 <Image
@@ -46,20 +46,12 @@ export default async function Header() {
             </div>
 
             <nav className={"flex items-center grow gap-4 ml-5"}>
-                <div className={"left-nav flex flex-row items-center gap-2 select-none"}>
-                    <NavButtonActive
-                        title={"feed"}
-                    />
+                <div className={"left-nav flex flex-row items-center gap-3 select-none"}>
 
-                    <NavButtonInactive
-                        title={"expanded"}
-                        url={"/expanded"}
-                    />
+                    <NavButton title={"feed"} url={"/"}/>
+                    <NavButton title={"expanded"} url={"/expanded"}/>
+                    <NavButton title={"loading"} url={"/loading"}/>
 
-                    <NavButtonInactive // TODO will be moved on release
-                        title={"loading"}
-                        url={"/loading"}
-                    />
                 </div>
 
                 <div className={"right-nav flex flex-row items-center gap-4 ml-auto"}>

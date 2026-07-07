@@ -1,8 +1,29 @@
-@import "tailwindcss";
+  @import "tailwindcss";
+
+  /* colors, animations, fonts */
+
+  @font-face {
+    font-family: 'Chivo';
+    src: url('../fonts/Chivo.ttf');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Chivo Mono';
+    src: url('../fonts/ChivoMono.ttf');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
 
 
-/* colors, animations */
-@theme {
+  @theme {
+
+    --font-display: "Chivo", sans-serif;
+    --font-mono: "Chivo Mono", monospace;
+
   --background: #0f0f0f;
   --foreground: #e2d8c8;
   --card: #161616;
@@ -47,6 +68,14 @@
   /* animations */
 
   --animate-blink: blink-animation 2s steps(1, start) infinite;
+
+    --animate-spinner: spinner 4s infinite linear;
+    
+    @keyframes spinner {
+      to {
+        transform: rotate(360deg);
+      }
+    }
 
   @keyframes blink-animation {
     50% {
@@ -93,6 +122,3 @@
   --sidebar-border: rgba(0, 0, 0, 0.08);
   --sidebar-ring: #ff6600;
 }
-
-
-/* predefined styles for elements */
