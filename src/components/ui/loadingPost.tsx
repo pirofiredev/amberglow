@@ -2,7 +2,7 @@
 
 export default function LoadingPost() {
     return (
-        <div className={"loading-posts flex flex-col gap-5"}>
+        <div className={"loading-posts flex flex-col gap-5 z-0"}>
 
             <div className={"loading-post flex flex-row gap-5"}>
 
