@@ -50,7 +50,6 @@ export default async function Header() {
 
                     <NavButton title={"feed"} url={"/"}/>
                     <NavButton title={"expanded"} url={"/expanded"}/>
-                    <NavButton title={"loading"} url={"/loading"}/>
 
                 </div>
 

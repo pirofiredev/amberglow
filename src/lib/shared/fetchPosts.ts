@@ -4,8 +4,26 @@ interface FetchPost {
     fetchTo: number;
 }
 
+interface post {
+    id: number;
+    by: string;
+    time: number;
+    type?: "story" | "comment" | "job" | "poll" | "poll-opt";
+    title?: string;
+    url: string;
+    text?: string;
+    score?: number;
+    descendants?: number;
+    kids?: number[];
+    parent?: number;
+    poll?: number;
+    parts?: number[];
+    deleted?: boolean;
+    dead?: boolean;
+}
 
-export default async function fetchPosts({ filters, fetchFrom, fetchTo }: FetchPost) {
+
+export default async function fetchPosts({ filters, fetchFrom, fetchTo }: FetchPost): Promise<post[]> {
 
     const mostPopularPostsUrl = "https://hacker-news.firebaseio.com/v0/topstories.json";
 
@@ -47,8 +65,7 @@ export default async function fetchPosts({ filters, fetchFrom, fetchTo }: FetchP
         return postsData;
     }
 
-
     else {
-        console.log("soon");
+        return [];
     }
 }

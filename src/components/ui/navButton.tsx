@@ -9,22 +9,18 @@ export default function NavButton({title, url}: {title: string, url: string}) {
 
     if(currentPathname === url) {
         return (
-            <>
-                    <div className={"px-2 bg-(--primary) text-(--foreground) rounded-sm"}>
-                        <p>{title}</p>
-                    </div>
-            </>
+            <div className={"px-2 bg-(--primary) text-(--foreground) rounded-sm"}>
+                <p>{title}</p>
+            </div>
         );
     }
     else {
         return (
-            <>
                 <Link href={url}>
                     <div className={"px-2  text-(--muted-foreground) hover:text-(--foreground) transition duration-100 rounded-sm"}>
                         <p>{title}</p>
                     </div>
                 </Link>
-            </>
         );
     }
 
