@@ -1,5 +1,6 @@
 'use client'
 import {useEffect, useState} from "react";
+import fetchPosts from "@/lib/shared/fetchPosts";
 
 interface Tag {
     id: number;
