@@ -1,12 +1,12 @@
-'use server'
-
 import RefreshButton from '../ui/refreshButton';
 import ThemeSwitchButton from '../ui/themeSwitchButton';
 import FilterButton from '../ui/filterButton';
 import NavButton from "../ui/navButton"
 
-import { createClient } from '@/lib/supabase/server'
+import { cacheLife } from "next/cache";
+import { createPublicClient } from "@/lib/supabase/public";
 import Image from 'next/image';
+
 
 
 interface Tag {
@@ -15,10 +15,12 @@ interface Tag {
 }
 
 export default async function Header() {
+    "use cache";
+    cacheLife("hours");
 
 
     async function fetchTags(): Promise<Tag[]> {
-        const supabase = await createClient();
+        const supabase = await createPublicClient();
         const { data: tags } = await supabase
             .from('tags')
             .select('id, tagName')
@@ -26,7 +28,7 @@ export default async function Header() {
         return tags as Tag[];
     }
 
-    const tags: { id: number, tagName: string }[] = await fetchTags();
+    const tags = await fetchTags();
 
 
     return (

@@ -16,7 +16,7 @@ export default function RootLayout({
       lang="en"
       className={`h-full`}
     >
-      <body className={`bg-(--primary-foreground) min-h-full flex flex-col max-w-9/10 mx-auto font-display`}>{children}</body>
+      <body className={`bg-(--primary-foreground) min-h-full flex flex-col max-w-[95%] mx-auto font-display`}>{children}</body>
     </html>
   );
 }

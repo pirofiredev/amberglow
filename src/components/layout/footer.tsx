@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export default async function Footer() {
     return (
-      <div className="footer-wrapper m-5 flex flex-row mt-auto">
+      <div className="footer-wrapper m-5 flex flex-row mt-15">
 
         <div className="footer-left flex flex-col">
             <span className={"flex flex-row gap-2 items-center"}>

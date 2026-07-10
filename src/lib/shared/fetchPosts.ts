@@ -1,3 +1,6 @@
+import getPostDescription from "@/components/functions/getPostDescription";
+import getUserPts from "@/components/functions/getUserPts";
+
 interface FetchPost {
     filters: Array<string>;
     fetchFrom: number;
@@ -20,6 +23,8 @@ interface post {
     parts?: number[];
     deleted?: boolean;
     dead?: boolean;
+    description?: string;
+    karma?: number;
 }
 
 
@@ -60,6 +65,9 @@ export default async function fetchPosts({ filters, fetchFrom, fetchTo }: FetchP
         for (const post of popularPostsIdList) {
             const popularPostResponse = await fetch(specificItemUrl(post));
             const popularPostsData = await popularPostResponse.json();
+
+            popularPostsData.karma = await getUserPts(popularPostsData.by);
+
             postsData.push(popularPostsData);
         }
         return postsData;
