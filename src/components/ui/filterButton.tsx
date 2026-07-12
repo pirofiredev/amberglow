@@ -5,6 +5,7 @@ interface Tag {
     id: number;
     tagName: string;
 }
+
 export default function FilterButton({ tags }: { tags: Tag[] }) {
 
     const [aiFilter, setAiFilter] = useState(false);

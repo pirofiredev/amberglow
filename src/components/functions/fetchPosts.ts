@@ -1,4 +1,3 @@
-import getPostDescription from "@/components/functions/getPostDescription";
 import getUserPts from "@/components/functions/getUserPts";
 
 interface FetchPost {

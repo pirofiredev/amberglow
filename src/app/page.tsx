@@ -1,19 +1,19 @@
 'use server'
 import Header from "../components/layout/header";
-import Posts from "@/components/ui/posts";
+import PostMiddle from "@/components/ui/postMiddle";
 import Footer from "@/components/layout/footer";
-import LoadingAnimation from "@/components/ui/loadingAnimation"
 import {Suspense} from "react";
+import LoadingAnimation from "@/components/ui/loadingAnimation";
 
 
 export default async function Feed() {
   return (
       <>
-        <Header />
-          <Suspense fallback={<LoadingAnimation/>}>
-              <Posts/>
-          </Suspense>
-        <Footer/>
+        <Suspense fallback={<LoadingAnimation/>}>
+            <Header />
+            <PostMiddle/>
+            <Footer/>
+        </Suspense>
       </>
   );
 }
