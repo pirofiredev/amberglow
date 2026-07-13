@@ -1,9 +1,9 @@
 'use server'
-import Header from "../components/layout/header";
-import PostMiddle from "@/components/ui/postMiddle";
-import Footer from "@/components/layout/footer";
+import Header from "../components/bridge/headerBridge";
+import PostBridge from "../components/bridge/postBridge";
+import Footer from "../components/client/templates/layout/footerTemplate";
 import {Suspense} from "react";
-import LoadingAnimation from "@/components/ui/loadingAnimation";
+import LoadingAnimation from "../components/client/templates/layout/loadingAnimation";
 
 
 export default async function Feed() {
@@ -11,7 +11,7 @@ export default async function Feed() {
       <>
         <Suspense fallback={<LoadingAnimation/>}>
             <Header />
-            <PostMiddle/>
+            <PostBridge/>
             <Footer/>
         </Suspense>
       </>

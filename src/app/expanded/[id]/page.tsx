@@ -1,7 +1,7 @@
-import Header from "@/components/layout/header";
-import ExpandedCard from "@/components/ui/expandedCard";
+import Header from "../../../components/bridge/headerBridge";
+import ExpandedCard from "../../../components/client/templates/expandedCardTemplate";
 import {Suspense} from "react";
-import LoadingAnimation from "@/components/ui/loadingAnimation";
+import LoadingAnimation from "../../../components/client/templates/layout/loadingAnimation";
 
 
 type PageProps = {

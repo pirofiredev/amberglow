@@ -4,7 +4,7 @@
 
   @font-face {
     font-family: 'Chivo';
-    src: url('../fonts/Chivo.ttf');
+    src: url('../../public/fonts/Chivo.ttf');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -12,7 +12,7 @@
 
   @font-face {
     font-family: 'Chivo Mono';
-    src: url('../fonts/ChivoMono.ttf');
+    src: url('../../public/fonts/ChivoMono.ttf');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
