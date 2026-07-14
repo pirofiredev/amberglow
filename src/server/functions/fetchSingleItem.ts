@@ -19,11 +19,11 @@ interface post {
 }
 
 
-export default async function fetchSinglePost(postId: number): Promise<post> {
+export default async function fetchSingleItem(itemId: number): Promise<post> {
 
     function specificItemUrl(itemId: number) {
         return `https://hacker-news.firebaseio.com/v0/item/${itemId}.json`;
     }
-    const singlePostResponse = await fetch(specificItemUrl(postId));
+    const singlePostResponse = await fetch(specificItemUrl(itemId));
     return await singlePostResponse.json();
 }
