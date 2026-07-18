@@ -35,7 +35,6 @@ export default async function fetchPosts({ filters, fetchFrom, fetchTo }: FetchP
         return `https://hacker-news.firebaseio.com/v0/item/${itemId}.json`;
     }
 
-
     // returns id's of most popular posts
     async function mostPopularPostsIds(fetchFrom:number, fetchTo:number) {
 
@@ -51,7 +50,6 @@ export default async function fetchPosts({ filters, fetchFrom, fetchTo }: FetchP
         }
         return tempPostsList;
     }
-
 
 
     // User didn't apply any filters
