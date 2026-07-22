@@ -42,6 +42,5 @@ export default function FilterButton({ tags }: { tags: Tag[] }) {
                 tags={tags}
             />
         </>
-
     );
 }

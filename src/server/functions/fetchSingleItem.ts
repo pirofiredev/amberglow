@@ -3,7 +3,7 @@ interface post {
     by: string;
     time: number;
     type?: "story" | "comment" | "job" | "poll" | "poll-opt";
-    title?: string;
+    title: string;
     url: string;
     text?: string;
     score?: number;

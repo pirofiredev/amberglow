@@ -100,12 +100,12 @@ export default function tagsMenu({tags}: {tags: Tag[]}) {
 
             <div className={`bottomFilterSection`}>
 
-                <span className={"flex flex-row items-center justify-between"}>
-                    <p className={"uppercase text-(--muted-foreground) text-lg font-mono"}>FEATURED TAGS</p>
+                <span className={"flex flex-row items-center justify-between border-b border-b-(--border) pb-1"}>
+                    <p className={"uppercase text-(--muted-foreground) text-lg font-mono"}>featured tags</p>
                     <button type={"button"} onClick={clearTags} className={`${clearAllVisible ? "visible" : "hidden"} cursor-pointer text-(--primary)`}>clear all</button>
                 </span>
 
-                <div className={"tags flex flex-wrap flex-row gap-1 mt-2"}>
+                <div className={"tags flex flex-wrap flex-row gap-1 mt-2.5"}>
                     {tags.map((tag) => (
                         <FilterTag
                             tag={tag}
