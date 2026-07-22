@@ -1,10 +1,10 @@
-a modern HN reader.
+### Modern HN reader.
 
-	- amberglow **v1**
-		- **cronjob / basic tag fetching** 
+- amberglow **v1**
+	- **cronjob / basic tag fetching** 
 			- first time on - fetches latest ...
-
-		- **filters**
+	    
+	- **filters**
 			- User selected predefined tag -> DB SELECT query -> all ID's are shown
 			
 		- **optimizations**
