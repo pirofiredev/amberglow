@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 import { useStoreTags } from "@/store/useTagStore";
 
 interface tagInterface {
-    id: number
+    tagId: number
     tagName: string
 }
 
@@ -40,8 +40,8 @@ export default function filterTag({tag}: {tag: tagInterface}) {
 
     return (
         <button
-            key={tag.id}
-            id={tag.id.toString()}
+            key={tag.tagId}
+            id={tag.tagId.toString()}
             type="button"
             onClick={tagsHandler}
             className={`cursor-pointer ${tagSelected ? "bg-(--semi-ransparent-primary) text-(--foreground) border-(--primary)" : "bg-(--sidebar-accent) text-(--muted-foreground) hover:text-(--foreground) hover:border-(--primary)"}  transition px-2 py-0.5 text-[0.9rem] rounded-full border border-(--border)`}

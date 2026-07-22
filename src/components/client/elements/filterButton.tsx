@@ -2,79 +2,35 @@
 import {useEffect, useState} from "react";
 import { useStoreTags } from "@/store/useTagStore";
 import TagsMenu from "@/components/client/templates/tagsMenu";
-import {useTagMenuToggle} from "@/store/useTagMenuToggleStore";
+import { useTagMenuToggle } from "@/store/useTagMenuToggleStore";
 
 interface Tag {
-    id: number;
+    tagId: number;
     tagName: string;
 }
 
-export default function FilterButton({tags}: { tags: Tag[] }) {
+export default function FilterButton({ tags }: { tags: Tag[] }) {
 
     const toggleMenu = useTagMenuToggle((state) => state.toggleMenu);
 
+    const isOpened = useTagMenuToggle((state) => state.isOpened);
+
     const [localOpen, setLocalOpen] = useState(false);
-
-    // const closeMenu = useTagMenuToggle((state) => state.closeMenu);
-
-    // const [aiFilter, setAiFilter] = useState(false);
-
-    // const [filterVisible, setFilterVisible] = useState(false);
-    // const [filterAnimation, setFilterAnimation] = useState(false); // true - opacity 100, false - opacity 0
-    //
-
-    //
-    //
-    // function toggleFilterList() {
-    //
-    //     if(filterVisible) {
-    //         setFilterAnimation(false);
-    //         setTimeout(()=>{
-    //             setFilterVisible(false)
-    //         }, 300)
-    //     }
-    //     else {
-    //         setFilterVisible(true);
-    //         requestAnimationFrame(() => {   // without it, animation cuts off at beginning
-    //             setFilterAnimation(true);
-    //         });
-    //     }
-    // }
-
 
     function toggleFilterList() {
         toggleMenu();
         setLocalOpen(!localOpen);
     }
 
+    useEffect(() => {
+        if (isOpened) {
+            setLocalOpen(true);
+        }
+        else {
+            setLocalOpen(false);
+        }
+    }, [isOpened]);
 
-    // function aiFilterHandler() {
-    //     setAiFilter(!aiFilter);
-    // }
-
-    // function clearFilters() {
-    //     clearTags();
-    // }
-
-    // useEffect(() => { // autoclose if user clicked somewhere but not on menu
-    //     if (!filterVisible) return;
-    //
-    //     function handleClick(clickEvent: MouseEvent) {
-    //         if (!(clickEvent.target as HTMLElement).closest("#filtersList")) {
-    //             setFilterAnimation(false);
-    //             setTimeout(() => setFilterVisible(false), 300);
-    //         }
-    //     }
-    //
-    //     document.body.addEventListener("click", handleClick);
-    //
-    //     return () => {
-    //         document.body.removeEventListener("click", handleClick);
-    //     };
-    // }, [filterVisible]);
-
-    //
-    // ${filterAnimation ? "bg-(--transparent-primary) border-(--primary) text-(--primary) hover:text-(--primary)" : ""}
     return (
         <>
             <button type={"button"} onClick={toggleFilterList} className={`filterButton ${localOpen ? "bg-(--transparent-primary) border-(--primary) text-(--primary) hover:text-(--primary)" : ""} flex flex-row items-center w-25 justify-center gap-1 border border-(--border) rounded-lg p-1 text-(--muted-foreground) hover:border-(--primary) hover:text-(--foreground) transition duration-300 cursor-pointer`}>

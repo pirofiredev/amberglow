@@ -1,7 +1,7 @@
 import { createPublicClient } from "../lib/supabase/public";
 
 interface Tag {
-    id: number;
+    tagId: number;
     tagName: string;
 }
 
@@ -12,7 +12,7 @@ export default async function fetchFilterTags() {
         const supabase = createPublicClient();
         const { data: tags } = await supabase
             .from('tags')
-            .select('id, tagName')
+            .select('tagId, tagName')
             .order('tagName');
         return tags as Tag[];
     }

@@ -1,6 +1,6 @@
-<mxfile host="drawio-plugin" modified="2026-07-16T13:08:54.420Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36" version="22.1.22" etag="WjtbbDLC2bYtldVgiQrv" type="embed">
+<mxfile host="drawio-plugin" modified="2026-07-22T11:42:35.061Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36" etag="eyAlr3dxrlAXIRdHvfT6" version="22.1.22" type="embed">
   <diagram name="Page-1" id="658S_KEnktReUJvUvaXQ">
-    <mxGraphModel dx="2053" dy="1069" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="2329" dy="1477" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -56,9 +56,9 @@
         <mxCell id="lqiVRJ92nVq1sa2W-HcO-37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=&quot;JetBrains Mono&quot;;" parent="1" source="lqiVRJ92nVq1sa2W-HcO-15" target="lqiVRJ92nVq1sa2W-HcO-35" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="lqiVRJ92nVq1sa2W-HcO-15" target="3">
+        <mxCell id="7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="lqiVRJ92nVq1sa2W-HcO-15" target="8">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="610" y="-200" as="targetPoint" />
+            <mxPoint x="610" y="-170" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="lqiVRJ92nVq1sa2W-HcO-15" value="server" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;fontFamily=&quot;JetBrains Mono&quot;;" parent="1" vertex="1">
@@ -171,16 +171,14 @@
         <mxCell id="UERVDVsaKvWAzfgoeY73-4" value="usually large functions that could be used somewhere else" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=16;fontFamily=&quot;JetBrains Mono&quot;;" parent="1" vertex="1">
           <mxGeometry x="762.5" y="530" width="155" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="3" target="7">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="890" y="-210" as="targetPoint" />
-          </mxGeometry>
+        <mxCell id="10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="8" target="9">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="3" value="content" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;fontFamily=&quot;JetBrains Mono&quot;;" vertex="1" parent="1">
+        <mxCell id="8" value="content-cron" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;fontFamily=&quot;JetBrains Mono&quot;;" vertex="1" parent="1">
           <mxGeometry x="680" y="-240" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="7" value="contains project-specific content fetching logic" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=14;fontFamily=&quot;JetBrains Mono&quot;;" vertex="1" parent="1">
-          <mxGeometry x="890" y="-232.5" width="220" height="45" as="geometry" />
+        <mxCell id="9" value="this folder contains files that are being ran periodically to update content in DB" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=16;fontFamily=&quot;JetBrains Mono&quot;;" vertex="1" parent="1">
+          <mxGeometry x="890" y="-245" width="290" height="70" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

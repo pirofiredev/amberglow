@@ -1,20 +1,21 @@
 "use client"
 import FilterTag from "../elements/filterTag"
 import {useTagMenuToggle} from "@/store/useTagMenuToggleStore";
-import {useState, useEffect} from "react";
+import {useState, useEffect, useRef} from "react";
 import {useStoreTags} from "@/store/useTagStore";
 
-// ${filterAnimation ? "opacity-100" : "opacity-0"} ${filterVisible ? "visible" : "hidden"}
 
 
 interface Tag {
-    id: number;
+    tagId: number;
     tagName: string;
 }
 
 export default function tagsMenu({tags}: {tags: Tag[]}) {
 
     const isOpened = useTagMenuToggle((state) => state.isOpened);
+    const toggleMenu = useTagMenuToggle((state) => state.toggleMenu);
+
     const [localOpened, setLocalOpened] = useState(false);
     const [localAnimation, setLocalAnimation] = useState(false); // to make delay before it actually disappears and overall fade smoothness
 
@@ -55,9 +56,26 @@ export default function tagsMenu({tags}: {tags: Tag[]}) {
     }, [userTags]);
 
 
+    const menuRef = useRef<HTMLDivElement>(null); // to silent ts
+    useEffect(() => {   //TODO review
+        if (!isOpened) return;
+        function handleGlobalClick(event: MouseEvent) {
+            const userClickPosition = event.target as Node;
+
+            if (!menuRef.current?.contains(userClickPosition)) {
+                toggleMenu();
+            }
+        }
+        document.addEventListener("click", handleGlobalClick);
+        return () => {
+            document.removeEventListener("click", handleGlobalClick);
+        };
+    }, [isOpened, toggleMenu]);
+
+
 
     return (
-        <div id={"filtersList"} className={`${localOpened ? "visible" : "hidden"} ${localAnimation ? "opacity-100" : "opacity-0"} transition-all duration-300 bg-(--card) border border-(--border) absolute right-0 w-1/2 top-13 p-3`}>
+        <div id={"filtersList"} ref={menuRef} className={`${localOpened ? "visible" : "hidden"} ${localAnimation ? "opacity-100" : "opacity-0"} transition-all duration-300 bg-(--card) border border-(--border) absolute right-0 w-1/2 top-13 p-3`}>
 
             {/*<div className={`topFilterSection border-b border-b-(--border) pb-3`}>*/}
             {/*    <p className={"uppercase text-(--muted-foreground) text-[0.8rem] text-center mb-0.5"}>ai filter</p>*/}
@@ -91,7 +109,7 @@ export default function tagsMenu({tags}: {tags: Tag[]}) {
                     {tags.map((tag) => (
                         <FilterTag
                             tag={tag}
-                            key={tag.id}
+                            key={tag.tagId}
                         />
                     ))
                     }

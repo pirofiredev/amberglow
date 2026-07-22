@@ -1,7 +1,7 @@
 "use server"
 
-import HeaderTemplate from "../client/templates/layout/headerTemplate";
 import TagsBridge from "../bridge/tagsBridge";
+import HeaderTemplate from "../client/templates/layout/headerTemplate";
 
 
 export default async function HeaderMiddle() {

@@ -1,4 +1,5 @@
 import getUserPts from "../../server/functions/getUserPts";
+import getMostPopularPostIds from "@/server/functions/getMostPopularPostIds";
 
 interface FetchPost {
     filters: Array<string>;
@@ -29,24 +30,15 @@ interface post {
 
 export default async function fetchPosts({ filters, fetchFrom, fetchTo }: FetchPost): Promise<post[]> {
 
-    const mostPopularPostsUrl = "https://hacker-news.firebaseio.com/v0/topstories.json";
 
     function specificItemUrl(itemId: number) {
         return `https://hacker-news.firebaseio.com/v0/item/${itemId}.json`;
     }
 
-    // returns id's of most popular posts
-    async function mostPopularPostsIds(fetchFrom:number, fetchTo:number) {
-
-        const mostPopularPostsResponse = await fetch(mostPopularPostsUrl);
-        const mostPopularPostsList: number[] = await mostPopularPostsResponse.json();
-
-        // biome-ignore lint/style/useConst: <array.push at 25 line bruh>
-        let tempPostsList: Array<number> = [];
-
-        // return mostPopularPostsList;
+    function extractPopularPosts(mostPopularPostsIds: Array<number>, postsFrom: number, postTo: number) {
+        const tempPostsList: Array<number> = [];
         for(let i= fetchFrom; i<=fetchTo; i++) {
-            tempPostsList.push(mostPopularPostsList[i]);
+            tempPostsList.push(mostPopularPostsIds[i]);
         }
         return tempPostsList;
     }
@@ -57,9 +49,11 @@ export default async function fetchPosts({ filters, fetchFrom, fetchTo }: FetchP
         // biome-ignore lint/style/useConst: <as on 25 line biome doesn't see arr.push>
         let postsData = [];
 
-        const popularPostsIdList:Array<number> = await mostPopularPostsIds(fetchFrom, fetchTo);
+        const popularPostsIdList:Array<number> = await getMostPopularPostIds();
 
-        for (const post of popularPostsIdList) {
+        const specificListOfPosts = extractPopularPosts(popularPostsIdList, fetchFrom, fetchTo);
+
+        for (const post of specificListOfPosts) {
             const popularPostResponse = await fetch(specificItemUrl(post));
             const popularPostsData = await popularPostResponse.json();
 
